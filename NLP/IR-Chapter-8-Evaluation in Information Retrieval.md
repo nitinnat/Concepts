@@ -71,10 +71,25 @@
  - __Break-Even Point__ - R-precision == Recall. R-precision describes only one point on the prceision-recall curve. Correlated highly with MAP empirically, despite the above reason.
 
  - __ROC Curve__ - Receiver operating characteristics.
- * Plots the TP rate (sensitivity) against the FP rate (1 - specificity). Here, sensitivity == recall.
- * FP rate = fp/(fp+tn). Common to report the __area under the ROC curve__.
+  * Plots the TP rate (sensitivity) against the FP rate (1 - specificity). Here, sensitivity == recall.
+  * FP rate = fp/(fp+tn). Common to report the __area under the ROC curve__.
 
  - __Cumulative gain & Normalized discounted cumulative gain (NDCG)__
- * designed for situations of non-binary relevance. Evaluated at some number k of top search results. 
+  * designed for situations of non-binary relevance. Evaluated at some number k of top search results. 
 
 ![NDCG equation](images/NDCG_equation.png)
+
+## Assessing Relevance
+
+1. Information needs are designed generally by domain experts.
+2. __Pooling__ - Relevance is assessed over a subset of the collection that is formed from the top k documents returned by a number of different IR systems.
+3. Humans judgements can vary when it comes to relevance assignments. 
+- _Kappa statistic_ is used to combat this issue.
+![Kappa](images/Kappa.png)
+- P(A) is the proportion of times the judges agreed, P(E) is the proportion of times they are expected to agree by chance (0.5 for a two class decision with no assumptions.)
+- Normally the class distribution is skewed. _Marginal_ statistics are used to calculate expected agreement. Can be done in two ways:
+* You can marginalize over judges (Pooled version) or you can marginalize over each judge separately.
+* Kappa = 1 if they always agree, 0 if they agree at the rate given by chance, and negative if they are worse than random (they disagree a lot). Kappa ~= 0.8 is good. 0.67-0.8 is fair. Below that is cause for concern.
+* Calculating the Kappa statistic:
+![Kappa](images/Kappa_problem1.png)
+4. Marginal relevance is used when you want to return documents that are not all the same and redundant, i.e. diverse and novel.
