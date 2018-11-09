@@ -77,4 +77,4 @@
  - __Cumulative gain & Normalized discounted cumulative gain (NDCG)__
  * designed for situations of non-binary relevance. Evaluated at some number k of top search results. 
 
- [NDCG equation](images/NDCG_equation.png)
+[[images/NDCG_equation.png]]
